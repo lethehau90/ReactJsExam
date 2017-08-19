@@ -1,14 +1,24 @@
-ReactDOM.render(
-                <div>
-                    <h1> Le Hau </h1>
-                    <h1 className="mauvang"> Le Hau </h1>
-                </div>
-                , document.getElementById("root"));
+var HauLe = React.createClass({
+    render : function(){
+        return(
+            <div>
+                <h1 className="mauvang">Khoa hoc React</h1>
+                <KhoaHoc/>
+            </div>
+        );
+    }
+});
+
+var KhoaHoc = React.createClass({
+    render : function(){
+        return(
+            <h1>Can ban</h1>
+        );
+    }
+});
 
 ReactDOM.render(
-    <div>
-        <h1 className="mauvang">Khoa Hoc</h1>
-        <h1 className="mauvang">ReactJS</h1>
-    </div>
-    , document.getElementById("root2")
-);
+                <div>
+                    <HauLe></HauLe>
+                </div>
+                , document.getElementById("root"));
