@@ -10,13 +10,17 @@ var HauLe = React.createClass({
 
     //getInitState
     getInitialState: function(){
-        return { tongHocVien : 10}
+        return { tongHocVien : this.props.tongHocVien}
     },
 
     themHocVien(){
-        this.setState({
-            tongHocVien: this.state.tongHocVien + 1
-        });
+
+        this.state.tongHocVien = parseInt(this.state.tongHocVien) +1 ;
+        this.setState(this.state);
+
+        // this.setState({
+        //     tongHocVien: parseInt(this.state.tongHocVien) + 1
+        // });
     },
      //end getInitState
 
@@ -55,7 +59,7 @@ var KhoaHoc = React.createClass({
 
 ReactDOM.render(
                 <div>
-                    <HauLe ten="React Js" giangvien = "Mr. Hau">Can ban</HauLe>
-                    <HauLe ten="Node Js" giangvien = "Mr. Tung"> Nang cao </HauLe>
+                    <HauLe ten="React Js" giangvien = "Mr. Hau" tongHocVien = "10">Can ban</HauLe>
+                    <HauLe ten="Node Js" giangvien = "Mr. Tung" tongHocVien = "20"> Nang cao </HauLe>
                 </div>
                 , document.getElementById("root"));
