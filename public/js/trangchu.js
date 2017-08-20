@@ -22,6 +22,11 @@ var HauLe = React.createClass({
         //     tongHocVien: parseInt(this.state.tongHocVien) + 1
         // });
     },
+
+    //3s sẽ setInterval 1 lần tự động themHocVien
+    // componentDidMount(){
+    //     setInterval(this.themHocVien, 3000);
+    // },
      //end getInitState
 
     render : function(){
