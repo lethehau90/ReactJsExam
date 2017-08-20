@@ -57,8 +57,44 @@ var KhoaHoc = React.createClass({
     }
 });
 
+//Ref
+var InputTag = React.createClass({
+
+    showText(){
+        let text = this.refs.txt.value;
+        if(!text) return;
+        alert(text);
+    },
+    
+    showSL : function(){
+        let select = this.refs.sl.value;
+        alert(select);
+    },
+
+    render : function(){
+        return(
+            <div>
+                <div>
+                    <input type="text" ref = "txt" />
+                    <button onClick = {this.showText}>Click</button>
+                </div>
+                <hr/>
+                <div>
+                    <select ref="sl">
+                        <option value="a">AAAA</option>
+                        <option value="b">BBBB</option>
+                        <option value="c">CCC</option>
+                    </select>
+                    <button onClick={this.showSL}>Click</button>
+                </div>
+            </div>
+        );
+    }
+});
+
 ReactDOM.render(
                 <div>
+                    <InputTag></InputTag>
                     <HauLe ten="React Js" giangvien = "Mr. Hau" tongHocVien = "10">Can ban</HauLe>
                     <HauLe ten="Node Js" giangvien = "Mr. Tung" tongHocVien = "20"> Nang cao </HauLe>
                 </div>
