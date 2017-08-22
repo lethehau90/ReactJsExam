@@ -22,7 +22,7 @@ var List = React.createClass({
     getInitialState: function(){
         list = this;
         return {
-             mang : ["Jquery", "Php"]
+             mang : []
         }
     },
 
@@ -40,15 +40,30 @@ var List = React.createClass({
                }
             </div>
         );
+    },
+
+    componentDidMount(){
+        var that = this;
+        $.post("/getNotes", function(data){
+            that.setState({mang : data});
+        });
     }
+
 });
 
 var InputDiv = React.createClass({
 
     send(){
+        //post api
+        $.post("/addNote", {note : this.refs.txt.value}, function(data){
+            list.setState({mang : data})
+        })
+
         //list.setState({mang : list.state.mang.concat(this.refs.txt.value)})
-        list.state.mang.push(this.refs.txt.value)
-        list.setState(list.state)
+        // list.state.mang.push(this.refs.txt.value);
+        // list.setState(list.state);
+        //huy component
+        ReactDOM.unmountComponentAtNode(document.getElementById("divAdd"));
     },
 
     render : function(){

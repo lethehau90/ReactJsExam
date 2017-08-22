@@ -5,6 +5,8 @@
 var express = require('express')
 var app = express();
 var morgan = require("morgan");
+var bodyParser = require('body-parser');
+var parser = bodyParser.urlencoded({extended : false});
 
 app.use( express.static(__dirname + "/public"))
 
@@ -20,6 +22,18 @@ var port = process.env.PORT || 3000;
 app.get('/', function (req, res) {
     res.render('trangchu')
 })
+
+var mang = ["Android", "Php", "NodeJs", "React"]
+
+app.post("/getNotes", function(req, res){
+    res.send(mang);
+})
+
+app.post("/addNote", parser , function(req, res){
+    mang.push(req.body.note);
+    res.send(mang);
+})
+
 
 server.listen(port, function () {
     console.log("Server is listening on port: " + port);
