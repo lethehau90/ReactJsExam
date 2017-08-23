@@ -12,3 +12,8 @@
     border: solid 3px blue;
     border-radius: 1px;
 }
+
+input{
+     width:  150px; 
+    padding: 5px;
+}

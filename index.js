@@ -34,6 +34,18 @@ app.post("/addNote", parser , function(req, res){
     res.send(mang);
 })
 
+app.post("/delete", parser , function(req, res){
+    var id = req.body.idXoa;
+    mang.splice(id,1);
+    res.send(mang);
+})
+
+app.post("/update", parser , function(req, res){
+    var id = req.body.idSua;
+    mang[id] = req.body.noiDung;
+    res.send(mang);
+})
+
 
 server.listen(port, function () {
     console.log("Server is listening on port: " + port);

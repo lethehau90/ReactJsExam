@@ -1,12 +1,55 @@
 
 var list;
 var Node =  React.createClass({
+    
+    delete : function(){
+        $.post("/delete", {idXoa : this.props.id}, function(data){
+            list.setState({mang : data});
+        })
+    },
+
+    edit : function(){
+        this.setState({onEdit : true})
+    },
+
+    save : function(){
+        var that = this;
+        $.post("/update", {idSua : this.props.id, noiDung : this.refs.txt.value }, function(data){
+            list.setState({mang : data});
+            that.setState({onEdit : false});
+        });
+    },
+
+    cancel : function(){
+        this.setState({onEdit : false});
+    },
+
+    getInitialState() {
+        return { onEdit : false}
+    },
+
     render : function(){
-        return (
+        if(this.state.onEdit){
+            return (
             <div className = "div-note">
-                {this.props.children}
+                <input defaultValue={this.props.children} ref = "txt"/>
+                <button onClick= {this.save}>Lưu</button>
+                <button onClick= {this.cancel}>Hủy</button>
             </div>
         );
+        }
+        else{
+            return (
+            <div className = "div-note">
+                <p>
+                    {this.props.children}
+                </p>
+                <button onClick= {this.delete}>Xoa</button>
+                <button onClick= {this.edit}>Sua</button>
+            </div>
+        );
+        }
+        
     }
 });
 
@@ -34,7 +77,7 @@ var List = React.createClass({
                {
                    this.state.mang.map(function(node, index){
                         return (
-                            <Node key={index}>{node}</Node>
+                            <Node key={index} id={index}>{node}</Node>
                         );
                    })
                }
